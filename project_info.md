@@ -3,7 +3,7 @@
 
 ```bash
 sudo apt update && \
-sudo apt install python3-virtualenv apt-transport-https ca-certificates curl software-properties-common && \
+sudo apt install python3-virtualenv python3.10-venv apt-transport-https ca-certificates curl software-properties-common docker-compose -y && \
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg && \
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null && \
 sudo apt update && \
@@ -25,10 +25,14 @@ netstat -ln
 ip a
 "0.0.0.0" -> Bind socket in all interfaces (* Running on all addresses (0.0.0.0) - Get container IP)
 curl localhost:32772/users
+docker container prune # wipe out all the containers
+docker-compose up
+nc -v mongodb 27017 # Use nc tool to test connections with DB
 ```
 
 ## Links
 ```
 https://flask.palletsprojects.com/en/1.1.x/quickstart/
 https://flask-restful.readthedocs.io/en/latest/
+https://flask.palletsprojects.com/en/2.3.x/patterns/mongoengine/
 ```
